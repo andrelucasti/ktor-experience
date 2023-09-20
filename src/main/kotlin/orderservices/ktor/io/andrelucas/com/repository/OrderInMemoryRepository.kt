@@ -4,7 +4,7 @@ import orderservices.ktor.io.andrelucas.com.business.Order
 import orderservices.ktor.io.andrelucas.com.business.OrderRepository
 import java.util.UUID
 
-class OrderRepository: OrderRepository {
+class OrderInMemoryRepository: OrderRepository {
 
     private val data = mutableListOf<Order>()
 

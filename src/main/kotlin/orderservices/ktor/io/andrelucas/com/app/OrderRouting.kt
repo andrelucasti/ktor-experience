@@ -1,18 +1,12 @@
-package orderservices.ktor.io.andrelucas.com.plugins
+package orderservices.ktor.io.andrelucas.com.app
 
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import orderservices.ktor.io.andrelucas.com.app.OrderRequest
-import orderservices.ktor.io.andrelucas.com.app.OrderService
-import orderservices.ktor.io.andrelucas.com.repository.OrderRepository
 
-
-fun Application.configureRouting() {
-    val orderService = OrderService(OrderRepository())
-
+fun Application.configureOrderRouting(orderService: OrderService){
     routing {
         get("/orders") {
             call.respond(orderService.findAllOrders())

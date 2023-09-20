@@ -35,9 +35,10 @@ private fun createOrderItemsBy(orderItems: List<OrderItems>) =
 
 private fun orderToOrderResponse(order: Order) = OrderResponse(
     order.uuid.toString(),
-    order.description,
-    order.price.toInt(),
+    order.content,
+    order.price,
     order.items.map { item -> OrderItemResponse(item.uuid.toString(), item.content, item.price, item.quantity!!) },
+    order.getTotalItemsQuantity(),
     order.status.toString(),
     order.userId.toString()
 )
