@@ -13,7 +13,7 @@ class OrderInMemoryRepository: OrderRepository {
     }
 
     override fun findById(id: UUID): Order {
-        return data.find { it.uuid == id } ?: throw Exception("Order not found")
+        return data.find { it.uuid == id } ?: throw OrderNotFoundException("Order not found")
     }
 
     override fun findAll(): List<Order> {
@@ -28,3 +28,5 @@ class OrderInMemoryRepository: OrderRepository {
         TODO("Not yet implemented")
     }
 }
+
+class OrderNotFoundException(s: String) : Throwable(s)

@@ -24,7 +24,8 @@ class OrderService (private val orderRepository: OrderRepository) {
     }
 
     fun findOrderById(id: String): OrderResponse {
-        return orderToOrderResponse(orderRepository.findById(UUID.fromString(id)))
+        val order = orderRepository.findById(UUID.fromString(id))
+        return orderToOrderResponse(order)
     }
 
 }

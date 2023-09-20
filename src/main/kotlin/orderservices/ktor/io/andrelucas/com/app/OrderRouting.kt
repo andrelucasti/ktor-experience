@@ -5,6 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import orderservices.ktor.io.andrelucas.com.repository.OrderNotFoundException
 
 fun Application.configureOrderRouting(orderService: OrderService){
     routing {
@@ -22,8 +23,14 @@ fun Application.configureOrderRouting(orderService: OrderService){
 
         get("/orders/{id}") {
             val id = call.parameters["id"] ?: throw IllegalArgumentException("Parameter id not found")
-            orderService.findOrderById(id)
-                .let { call.respond(it) }
+
+            try {
+                call.respond(orderService.findOrderById(id))
+            } catch (e: OrderNotFoundException) {
+                call.application.environment.log.error("Order $id not found", e)
+
+                call.respond(HttpStatusCode.NotFound)
+            }
         }
     }
 }
