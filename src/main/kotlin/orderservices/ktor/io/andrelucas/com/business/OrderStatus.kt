@@ -2,11 +2,12 @@ package orderservices.ktor.io.andrelucas.com.business
 
 enum class OrderStatus {
     CREATED,
-    ARRIVED,
     PENDING,
+    CONFIRMED,
+    IN_PREPARATION,
+    READY_TO_DELIVER,
+    ACCEPTED,
     ON_THE_WAY,
     DELIVERED,
-    PAYMENT_PENDING,
-    PAYMENT_RECEIVED,
     CANCELED
 }

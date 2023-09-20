@@ -29,7 +29,6 @@ class OrderService (private val orderRepository: OrderRepository) {
 
 }
 
-
 private fun createOrderItemsBy(orderItems: List<OrderItems>) =
     orderItems
         .map { OrderItem.create(it.content, it.price, it.quantity) }
