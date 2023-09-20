@@ -9,6 +9,7 @@ import orderservices.ktor.io.andrelucas.com.plugins.configureHTTP
 import orderservices.ktor.io.andrelucas.com.plugins.configureMonitoring
 import orderservices.ktor.io.andrelucas.com.plugins.configureResource
 import orderservices.ktor.io.andrelucas.com.plugins.configureSerialization
+import orderservices.ktor.io.andrelucas.com.repository.DataBaseFactory
 import orderservices.ktor.io.andrelucas.com.repository.OrderInMemoryRepository
 
 fun main() {
@@ -17,6 +18,7 @@ fun main() {
 }
 
 fun Application.module() {
+    DataBaseFactory.init()
     configureResource()
     configureHTTP()
     configureMonitoring()
